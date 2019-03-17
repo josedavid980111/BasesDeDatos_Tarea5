@@ -22,5 +22,11 @@ namespace Tarea5
             _4 fg=new _4();
             fg.ShowDialog();
         }
+
+        private void comprasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _5 fg = new _5();
+            fg.ShowDialog();
+        }
     }
 }
