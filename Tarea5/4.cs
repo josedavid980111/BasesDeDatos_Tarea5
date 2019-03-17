@@ -18,7 +18,7 @@ namespace Tarea5
         OleDbConnection cnOracle;
         Varios.Comunes comunes = new Varios.Comunes();
         String cadSQL;
-        DataSet dsCadena = new DataSet(), dsSucursal = new DataSet();
+        DataSet dsCadena = new DataSet(), dsSucursal = new DataSet(), dsArticulo = new DataSet();
 
         public _4()
         {
@@ -90,6 +90,21 @@ namespace Tarea5
 
         }
 
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsNumber(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Convert.ToInt32(e.KeyChar)==8)
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
 
         private void _4_Load(object sender, EventArgs e)
         {
@@ -110,6 +125,14 @@ namespace Tarea5
 
 
             comunes.cargaCombo(comboBox2, dsSucursal, "TablaSucursal", "NombreSucursal");
+
+            //2.2- Obtiene y muestra los datos de los materia.
+            cadSQL = "Select * from T4Producto";
+            GestorBD.consBD(cadSQL, dsArticulo, "TablaArticulos");
+
+
+            comunes.cargaCombo(comboBox3, dsArticulo, "TablaArticulos", "NombreP");
+
 
         }
     }
