@@ -172,21 +172,21 @@ namespace Tarea5
 
             GestorBD = new GestorBD.GestorBD("MSDAORA", "System", "gonbar", "xe");
 
-            //2.1- Obtiene y muestra los datos de los alumnos.
+            //2.1- Obtiene y muestra los datos de los Cadena.
             cadSQL = "Select * from T4CADCOM";
             GestorBD.consBD(cadSQL, dsCadena, "TablaCadena");
 
 
             comunes.cargaCombo(comboBox1, dsCadena, "TablaCadena", "NombreCadena");
 
-            //2.2- Obtiene y muestra los datos de los materia.
+            //2.2- Obtiene y muestra los datos de los Sucursal.
             cadSQL = "Select * from T4Sucursal";
             GestorBD.consBD(cadSQL, dsSucursal, "TablaSucursal");
 
 
             comunes.cargaCombo(comboBox2, dsSucursal, "TablaSucursal", "NombreSucursal");
 
-            //2.2- Obtiene y muestra los datos de los materia.
+            //2.2- Obtiene y muestra los datos de los Articulos.
             cadSQL = "Select * from T4Producto";
             GestorBD.consBD(cadSQL, dsArticulo, "TablaArticulos");
 

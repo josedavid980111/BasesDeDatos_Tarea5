@@ -31,6 +31,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.SMFyP = new System.Windows.Forms.ToolStripMenuItem();
             this.comprasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.agregaCompraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -38,7 +39,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.SMFyP,
-            this.comprasToolStripMenuItem});
+            this.comprasToolStripMenuItem,
+            this.agregaCompraToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
@@ -58,6 +60,13 @@
             this.comprasToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
             this.comprasToolStripMenuItem.Text = "Compras";
             this.comprasToolStripMenuItem.Click += new System.EventHandler(this.comprasToolStripMenuItem_Click);
+            // 
+            // agregaCompraToolStripMenuItem
+            // 
+            this.agregaCompraToolStripMenuItem.Name = "agregaCompraToolStripMenuItem";
+            this.agregaCompraToolStripMenuItem.Size = new System.Drawing.Size(103, 20);
+            this.agregaCompraToolStripMenuItem.Text = "Agrega Compra";
+            this.agregaCompraToolStripMenuItem.Click += new System.EventHandler(this.agregaCompraToolStripMenuItem_Click);
             // 
             // Menu
             // 
@@ -80,6 +89,7 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem SMFyP;
         private System.Windows.Forms.ToolStripMenuItem comprasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem agregaCompraToolStripMenuItem;
     }
 }
 

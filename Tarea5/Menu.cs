@@ -28,5 +28,11 @@ namespace Tarea5
             _5 fg = new _5();
             fg.ShowDialog();
         }
+
+        private void agregaCompraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _6 fg = new _6();
+            fg.ShowDialog();
+        }
     }
 }
