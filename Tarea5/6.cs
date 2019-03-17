@@ -41,9 +41,22 @@ namespace Tarea5
 
         private void button2_Click(object sender, EventArgs e)
         {
-            dataGridView1.Rows[cont].Cells["IdProd"].Value = comboBox2.SelectedItem.ToString();
-            dataGridView1.Rows[cont].Cells["CantArt"].Value = textBox2.Text; ;
-            dataGridView1.Rows[cont].Cells["PrecioTotalArticulo"].Value = Convert.ToDouble(textBox2.Text);
+            String Articulo; int CantArticulo; double Total;
+            Articulo = comboBox2.SelectedItem.ToString();
+            CantArticulo = Convert.ToInt32(textBox2.Text);
+            cadSQL = "Select * from T4Producto p, T4Vende v, T4Sucursal s where s.IdSuc=v.IdSuc and v.IdProd=p.IdProd and p.NombreP='" + Articulo + "' and s.NombreSucursal='"+ comboBox3.SelectedItem.ToString()+"'";
+            GestorBD.consBD(cadSQL, dsArticulo, "TablaUnArticulo");
+            Total = Convert.ToDouble(dsArticulo.Tables["TablaUnArticulo"].Rows[0]["Precio"].ToString())*CantArticulo;
+            if (cont != 0)
+            {
+                dataGridView1.Rows.Add();
+            }
+            dataGridView1.Rows[0].Cells["IdProd"].Value = Articulo;
+            dataGridView1.Rows[0].Cells["CantArt"].Value = CantArticulo;
+            dataGridView1.Rows[0].Cells["PrecioTotalArticulo"].Value = Total;
+            comboBox2.SelectedIndex = -1;
+            textBox2.Text = "";
+            cont = cont + 1;
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -51,10 +64,27 @@ namespace Tarea5
             cont = 0;
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void comboBox3_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            e.Handled = true;
         }
+
+        private void comboBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.comboBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox1_KeyPress);
+        }
+
+        private void comboBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+
 
         private void button1_Click(object sender, EventArgs e)
         {
