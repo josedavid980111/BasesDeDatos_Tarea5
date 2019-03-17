@@ -12,7 +12,7 @@ namespace Tarea5
 {
     public partial class _6 : Form
     {
-
+        int cont;
         GestorBD.GestorBD GestorBD;
         DataSet dsCliente = new DataSet(), dsSucursal = new DataSet(), dsChecaCliente = new DataSet(), dsArticulo = new DataSet();
         String cadSQL;
@@ -37,6 +37,18 @@ namespace Tarea5
             {
                 e.Handled = true;
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            dataGridView1.Rows[cont].Cells["IdProd"].Value = comboBox2.SelectedItem.ToString();
+            dataGridView1.Rows[cont].Cells["CantArt"].Value = textBox2.Text; ;
+            dataGridView1.Rows[cont].Cells["PrecioTotalArticulo"].Value = Convert.ToDouble(textBox2.Text);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            cont = 0;
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -64,13 +76,14 @@ namespace Tarea5
                 textBox2.Visible = true;
                 button2.Visible = true;
                 button3.Visible = true;
-
+                dataGridView1.Visible = true;
                 
                 //2.2- Obtiene y muestra los datos de los Sucursal.
                 cadSQL = "Select * from T4Producto p, T4Vende v, T4Sucursal s where s.IDSuc=v.IDSuc and v.IdProd=p.IdProd and s.NombreSucursal='"+comboBox3.SelectedItem.ToString()+"'";
                 GestorBD.consBD(cadSQL, dsArticulo, "TablaArticulos");
 
                 comunes.cargaCombo(comboBox2, dsArticulo, "TablaArticulos", "NombreP");
+                cont = 0;
 
             }
         }
