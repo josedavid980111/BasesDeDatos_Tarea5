@@ -7,11 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.OleDb;
 
 namespace Tarea5
 {
     public partial class _4 : Form
     {
+
+        OleDbConnection cnOracle;
+
         public _4()
         {
             InitializeComponent();
