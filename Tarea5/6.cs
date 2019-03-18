@@ -12,11 +12,13 @@ namespace Tarea5
 {
     public partial class _6 : Form
     {
-        int cont;
-        GestorBD.GestorBD GestorBD;
-        DataSet dsCliente = new DataSet(), dsSucursal = new DataSet(), dsChecaCliente = new DataSet(), dsArticulo = new DataSet();
-        String cadSQL;
-        Varios.Comunes comunes = new Varios.Comunes();
+        private int cont;
+        private GestorBD.GestorBD GestorBD;
+        private DataSet dsCliente = new DataSet(), dsSucursal = new DataSet(), dsChecaCliente = new DataSet(), dsArticulo = new DataSet(), dsFactura = new DataSet();
+        private String cadSQL;
+        private Varios.Comunes comunes = new Varios.Comunes();
+        private double TotalDelTotal=0;
+        private String IdS, RFCCli;
 
         public _6()
         {
@@ -41,19 +43,20 @@ namespace Tarea5
 
         private void button2_Click(object sender, EventArgs e)
         {
-            String Articulo; int CantArticulo; double Total;
+            button4.Visible = true;
+            String Articulo, IdP; int CantArticulo; double Total;
             Articulo = comboBox2.SelectedItem.ToString();
             CantArticulo = Convert.ToInt32(textBox2.Text);
             cadSQL = "Select * from T4Producto p, T4Vende v, T4Sucursal s where s.IdSuc=v.IdSuc and v.IdProd=p.IdProd and p.NombreP='" + Articulo + "' and s.NombreSucursal='"+ comboBox3.SelectedItem.ToString()+"'";
             GestorBD.consBD(cadSQL, dsArticulo, "TablaUnArticulo");
             Total = Convert.ToDouble(dsArticulo.Tables["TablaUnArticulo"].Rows[0]["Precio"].ToString())*CantArticulo;
-            if (cont != 0)
-            {
-                dataGridView1.Rows.Add();
-            }
-            dataGridView1.Rows[0].Cells["IdProd"].Value = Articulo;
-            dataGridView1.Rows[0].Cells["CantArt"].Value = CantArticulo;
-            dataGridView1.Rows[0].Cells["PrecioTotalArticulo"].Value = Total;
+            IdP = Convert.ToString(dsArticulo.Tables["TablaUnArticulo"].Rows[0]["IdProd"].ToString());
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows[cont].Cells["IdP"].Value = Articulo;
+            dataGridView1.Rows[cont].Cells["CantArt"].Value = CantArticulo;
+            dataGridView1.Rows[cont].Cells["PrecioTotalArticulo"].Value = Total;
+            dataGridView1.Rows[cont].Cells["IdProducto"].Value = IdP;
+            TotalDelTotal = TotalDelTotal + Total;
             comboBox2.SelectedIndex = -1;
             textBox2.Text = "";
             cont = cont + 1;
@@ -61,12 +64,103 @@ namespace Tarea5
 
         private void button3_Click(object sender, EventArgs e)
         {
+            int folio=0;
+            int Articulo; int CantArticulo; double Total;
+            Random random = new Random();
+            Boolean folioAprobado = false;
+            while (!folioAprobado)
+            {
+                folio = random.Next(1000, 9999);
+                cadSQL = "Select * from T4Factura f where f.folio=" + folio;
+                GestorBD.consBD(cadSQL, dsFactura, "TablaFolio");
+                if (dsFactura.Tables["TablaFolio"].Rows.Count == 0)
+                {
+                    folioAprobado = true;
+                }
+                
+            }
+
+            cadSQL = "insert into T4Factura values (" + folio + ", date'" + dateTimePicker1.Value.Year + "-" + dateTimePicker1.Value.Month + "-" + dateTimePicker1.Value.Day + "'," + TotalDelTotal + ","+ TotalDelTotal+",'" + RFCCli + "','" + IdS + "')";
+            GestorBD.altaBD(cadSQL);
+
+            
+
+            for (int i = 0; i < cont; i++)
+            {
+                
+                CantArticulo = Convert.ToInt32(dataGridView1.Rows[i].Cells["CantArt"].Value);
+                Total = Convert.ToDouble(dataGridView1.Rows[i].Cells["PrecioTotalArticulo"].Value);
+                Articulo = Convert.ToInt32(dataGridView1.Rows[i].Cells["IdProducto"].Value);
+                cadSQL = "Insert into T4Contiene values(" + folio + "," + Articulo + "," + Total + "," + CantArticulo + ")";
+                dataGridView1.Rows.RemoveAt(i);
+                GestorBD.altaBD(cadSQL);
+            }
             cont = 0;
+
+            comboBox2.Visible = false;
+            label2.Visible = false;
+            label4.Visible = false;
+            label5.Visible = false;
+            dateTimePicker1.Visible = false;
+            textBox2.Visible = false;
+            button2.Visible = false;
+            button3.Visible = false;
+            dataGridView1.Visible = false;
+            button4.Visible = false;
+            comboBox1.Enabled = true;
+            comboBox3.Enabled = true;
+            button5.Visible = false;
+            button1.Visible = true;
+            comboBox1.SelectedIndex = -1;
+            comboBox3.SelectedIndex = -1;
+
         }
 
         private void comboBox3_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            TotalDelTotal = TotalDelTotal - Convert.ToDouble(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells["PrecioTotalArticulo"].Value);
+            dataGridView1.Rows.Remove(dataGridView1.CurrentRow);
+
+            cont = cont - 1;
+            if (cont == 0)
+            {
+                button4.Visible = false;
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            comboBox2.Visible = false;
+            label2.Visible = false;
+            label4.Visible = false;
+            label5.Visible = false;
+            dateTimePicker1.Visible = false;
+            textBox2.Visible = false;
+            button2.Visible = false;
+            button3.Visible = false;
+            dataGridView1.Visible = false;
+            button4.Visible = false;
+            button1.Visible = true;
+            button5.Visible = false;
+            comboBox1.Enabled = true;
+            comboBox3.Enabled = true;
+            comboBox1.SelectedIndex = -1;
+            comboBox3.SelectedIndex = -1;
+
+            for (int i = 0; i < cont; i++)
+            {
+                dataGridView1.Rows.RemoveAt(i);
+            }
+            cont = 0;
+            IdS="";
+            RFCCli = "";
+            textBox2.Text = "";
+            comboBox2.SelectedIndex = -1;
         }
 
         private void comboBox2_KeyPress(object sender, KeyPressEventArgs e)
@@ -88,6 +182,10 @@ namespace Tarea5
 
         private void button1_Click(object sender, EventArgs e)
         {
+            comboBox1.Enabled = false;
+            comboBox3.Enabled = false;
+            button5.Visible = true;
+            button1.Visible = false;
             String Cliente, Sucursal;
             Cliente = comboBox1.SelectedItem.ToString();
             Sucursal = comboBox3.SelectedItem.ToString();
@@ -107,13 +205,15 @@ namespace Tarea5
                 button2.Visible = true;
                 button3.Visible = true;
                 dataGridView1.Visible = true;
+
+                IdS = dsChecaCliente.Tables["TablaChecaCliente"].Rows[0]["IdSuc"].ToString();
+                RFCCli = dsChecaCliente.Tables["TablaChecaCliente"].Rows[0]["RFCCliente"].ToString();
                 
                 //2.2- Obtiene y muestra los datos de los Sucursal.
                 cadSQL = "Select * from T4Producto p, T4Vende v, T4Sucursal s where s.IDSuc=v.IDSuc and v.IdProd=p.IdProd and s.NombreSucursal='"+comboBox3.SelectedItem.ToString()+"'";
                 GestorBD.consBD(cadSQL, dsArticulo, "TablaArticulos");
 
                 comunes.cargaCombo(comboBox2, dsArticulo, "TablaArticulos", "NombreP");
-                cont = 0;
 
             }
         }

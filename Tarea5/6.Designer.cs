@@ -29,9 +29,6 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.IdProd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioTotalArticulo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CantArt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -45,6 +42,12 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.IdP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrecioTotalArticulo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CantArt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,38 +55,21 @@
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.IdProd,
+            this.IdP,
             this.PrecioTotalArticulo,
-            this.CantArt});
-            this.dataGridView1.Location = new System.Drawing.Point(24, 211);
+            this.CantArt,
+            this.IdProducto});
+            this.dataGridView1.Location = new System.Drawing.Point(23, 211);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(744, 198);
+            this.dataGridView1.Size = new System.Drawing.Size(745, 198);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.Visible = false;
             // 
-            // IdProd
-            // 
-            this.IdProd.HeaderText = "Producto";
-            this.IdProd.Name = "IdProd";
-            this.IdProd.Width = 300;
-            // 
-            // PrecioTotalArticulo
-            // 
-            this.PrecioTotalArticulo.HeaderText = "Precio Total de Articulos";
-            this.PrecioTotalArticulo.Name = "PrecioTotalArticulo";
-            this.PrecioTotalArticulo.Width = 200;
-            // 
-            // CantArt
-            // 
-            this.CantArt.HeaderText = "Cantidad de Articulos";
-            this.CantArt.Name = "CantArt";
-            this.CantArt.Width = 200;
-            // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(353, 415);
+            this.button3.Location = new System.Drawing.Point(320, 415);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.Size = new System.Drawing.Size(114, 23);
             this.button3.TabIndex = 1;
             this.button3.Text = "Agregar Compra";
             this.button3.UseVisualStyleBackColor = true;
@@ -180,7 +166,7 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(283, 156);
+            this.dateTimePicker1.Location = new System.Drawing.Point(293, 124);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 12;
@@ -189,7 +175,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(188, 162);
+            this.label5.Location = new System.Drawing.Point(188, 130);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(79, 13);
             this.label5.TabIndex = 13;
@@ -205,11 +191,59 @@
             this.comboBox3.TabIndex = 14;
             this.comboBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox3_KeyPress);
             // 
+            // IdP
+            // 
+            this.IdP.HeaderText = "Producto";
+            this.IdP.Name = "IdP";
+            this.IdP.Width = 300;
+            // 
+            // PrecioTotalArticulo
+            // 
+            this.PrecioTotalArticulo.HeaderText = "Precio Total de Articulos";
+            this.PrecioTotalArticulo.Name = "PrecioTotalArticulo";
+            this.PrecioTotalArticulo.Width = 200;
+            // 
+            // CantArt
+            // 
+            this.CantArt.HeaderText = "Cantidad de Articulos";
+            this.CantArt.Name = "CantArt";
+            this.CantArt.Width = 200;
+            // 
+            // IdProducto
+            // 
+            this.IdProducto.HeaderText = "ID";
+            this.IdProducto.Name = "IdProducto";
+            this.IdProducto.Visible = false;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(320, 182);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(114, 23);
+            this.button4.TabIndex = 15;
+            this.button4.Text = "Borrar Articulo";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Visible = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(530, 16);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 16;
+            this.button5.Text = "Modificar";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Visible = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // _6
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(793, 450);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.comboBox3);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.dateTimePicker1);
@@ -247,10 +281,13 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdProd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioTotalArticulo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CantArt;
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioTotalArticulo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CantArt;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdProducto;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
     }
 }
