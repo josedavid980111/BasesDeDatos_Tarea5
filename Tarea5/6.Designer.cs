@@ -29,7 +29,10 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button3 = new System.Windows.Forms.Button();
+            this.IdP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrecioTotalArticulo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CantArt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button2 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -42,12 +45,11 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.IdP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioTotalArticulo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CantArt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,22 +61,35 @@
             this.PrecioTotalArticulo,
             this.CantArt,
             this.IdProducto});
-            this.dataGridView1.Location = new System.Drawing.Point(23, 211);
+            this.dataGridView1.Location = new System.Drawing.Point(24, 247);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(745, 198);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.Visible = false;
             // 
-            // button3
+            // IdP
             // 
-            this.button3.Location = new System.Drawing.Point(320, 415);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(114, 23);
-            this.button3.TabIndex = 1;
-            this.button3.Text = "Agregar Compra";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Visible = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.IdP.HeaderText = "Producto";
+            this.IdP.Name = "IdP";
+            this.IdP.Width = 300;
+            // 
+            // PrecioTotalArticulo
+            // 
+            this.PrecioTotalArticulo.HeaderText = "Precio Total de Articulos";
+            this.PrecioTotalArticulo.Name = "PrecioTotalArticulo";
+            this.PrecioTotalArticulo.Width = 200;
+            // 
+            // CantArt
+            // 
+            this.CantArt.HeaderText = "Cantidad de Articulos";
+            this.CantArt.Name = "CantArt";
+            this.CantArt.Width = 200;
+            // 
+            // IdProducto
+            // 
+            this.IdProducto.HeaderText = "ID";
+            this.IdProducto.Name = "IdProducto";
+            this.IdProducto.Visible = false;
             // 
             // button2
             // 
@@ -191,33 +206,9 @@
             this.comboBox3.TabIndex = 14;
             this.comboBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox3_KeyPress);
             // 
-            // IdP
-            // 
-            this.IdP.HeaderText = "Producto";
-            this.IdP.Name = "IdP";
-            this.IdP.Width = 300;
-            // 
-            // PrecioTotalArticulo
-            // 
-            this.PrecioTotalArticulo.HeaderText = "Precio Total de Articulos";
-            this.PrecioTotalArticulo.Name = "PrecioTotalArticulo";
-            this.PrecioTotalArticulo.Width = 200;
-            // 
-            // CantArt
-            // 
-            this.CantArt.HeaderText = "Cantidad de Articulos";
-            this.CantArt.Name = "CantArt";
-            this.CantArt.Width = 200;
-            // 
-            // IdProducto
-            // 
-            this.IdProducto.HeaderText = "ID";
-            this.IdProducto.Name = "IdProducto";
-            this.IdProducto.Visible = false;
-            // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(320, 182);
+            this.button4.Location = new System.Drawing.Point(337, 218);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(114, 23);
             this.button4.TabIndex = 15;
@@ -228,7 +219,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(530, 31);
+            this.button5.Location = new System.Drawing.Point(530, 16);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 23);
             this.button5.TabIndex = 16;
@@ -237,11 +228,42 @@
             this.button5.Visible = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(337, 451);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(114, 23);
+            this.button3.TabIndex = 1;
+            this.button3.Text = "Agregar Compra";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Visible = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(191, 178);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(68, 13);
+            this.label6.TabIndex = 17;
+            this.label6.Text = "Pago Inicial: ";
+            this.label6.Visible = false;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(293, 178);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 18;
+            this.textBox1.Visible = false;
+            // 
             // _6
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(793, 450);
+            this.ClientSize = new System.Drawing.Size(793, 486);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.comboBox3);
@@ -270,7 +292,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
@@ -289,5 +310,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn IdProducto;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
