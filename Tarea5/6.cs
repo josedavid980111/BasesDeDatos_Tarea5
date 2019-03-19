@@ -90,7 +90,7 @@ namespace Tarea5
 
                 }
 
-                cadSQL = "insert into T4Factura values (" + folio + ", date'" + dateTimePicker1.Value.Year + "-" + dateTimePicker1.Value.Month + "-" + dateTimePicker1.Value.Day + "'," + TotalDelTotal + "," + TotalDelTotal + ",'" + RFCCli + "','" + IdS + "')";
+                cadSQL = "insert into T4Factura values (" + folio + ", date'" + DateTimePicker1.Value.Year + "-" + DateTimePicker1.Value.Month + "-" + DateTimePicker1.Value.Day + "'," + TotalDelTotal + "," + TotalDelTotal + ",'" + RFCCli + "','" + IdS + "')";
                 GestorBD.altaBD(cadSQL);
                 folioAprobado = false;
                 while (!folioAprobado)
@@ -105,7 +105,7 @@ namespace Tarea5
 
                 }
 
-                cadSQL = "insert into T4Pagos values (" + folioPago + ","+PagoInicial+", date'" + dateTimePicker1.Value.Year + "-" + dateTimePicker1.Value.Month + "-" + dateTimePicker1.Value.Day + "'," +folio+ ")";
+                cadSQL = "insert into T4Pagos values (" + folioPago + ","+PagoInicial+", date'" + DateTimePicker1.Value.Year + "-" + DateTimePicker1.Value.Month + "-" + DateTimePicker1.Value.Day + "'," +folio+ ")";
                 GestorBD.altaBD(cadSQL);
 
 
@@ -125,7 +125,7 @@ namespace Tarea5
                 label2.Visible = false;
                 label4.Visible = false;
                 label5.Visible = false;
-                dateTimePicker1.Visible = false;
+                DateTimePicker1.Visible = false;
                 textBox2.Visible = false;
                 button2.Visible = false;
                 button3.Visible = false;
@@ -137,7 +137,7 @@ namespace Tarea5
                 comboBox3.Enabled = true;
                 button5.Visible = false;
                 button1.Visible = true;
-                DateTimePiker1.value = DateTime.Now;
+                DateTimePicker1.Value = DateTime.Now;
                 comboBox1.SelectedIndex = -1;
                 comboBox3.SelectedIndex = -1;
                 textBox1.Text = "";
@@ -178,12 +178,12 @@ namespace Tarea5
 
         private void button5_Click(object sender, EventArgs e)
         {
-            DateTimePiker1.value = DateTime.Now;
+            DateTimePicker1.Value = DateTime.Now;
             comboBox2.Visible = false;
             label2.Visible = false;
             label4.Visible = false;
             label5.Visible = false;
-            dateTimePicker1.Visible = false;
+            DateTimePicker1.Visible = false;
             textBox2.Visible = false;
             button2.Visible = false;
             button3.Visible = false;
@@ -250,7 +250,7 @@ namespace Tarea5
                     label2.Visible = true;
                     label4.Visible = true;
                     label5.Visible = true;
-                    dateTimePicker1.Visible = true;
+                    DateTimePicker1.Visible = true;
                     textBox2.Visible = true;
                     button2.Visible = true;
                     button3.Visible = true;

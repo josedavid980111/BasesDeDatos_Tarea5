@@ -37,7 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="GestorBD">
-      <HintPath>..\..\..\..\..\Usuario\Jose\Desktop\Bases de Datos\GestorBD\bin\Debug\GestorBD.dll</HintPath>
+      <HintPath>..\..\..\..\..\Google Drive\BD\Programas\GestorBD\bin\Debug\GestorBD.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -82,6 +82,9 @@
     <EmbeddedResource Include="4.resx">
       <DependentUpon>4.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="5.resx">
+      <DependentUpon>5.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="6.resx">
       <DependentUpon>6.cs</DependentUpon>
     </EmbeddedResource>
@@ -110,6 +113,8 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
