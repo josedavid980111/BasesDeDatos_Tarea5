@@ -18,25 +18,32 @@ namespace Tarea5
         GestorBD.GestorBD GestorBD;
         OleDbConnection cnOracle;
         Varios.Comunes comunes = new Varios.Comunes();
+
         String cadSQL;
         DataSet dsCadena = new DataSet(), dsSucursal = new DataSet(), dsArticulo = new DataSet();
         DataSet dsFactura = new DataSet(), dsTotal = new DataSet(), dsPagos = new DataSet(), dsMonto = new DataSet();
-        DataSet dsActual = new DataSet();
+        DataSet dsActual = new DataSet(), dsRFC = new DataSet();
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
             String fecha = dtp5.Value.Day + "/" + dtp5.Value.Month + "/" + dtp5.Value.Year;
             String nombre = cbCliente.Text;
+            String RFC;
 
+            //asigna el rfc del cliente buscado
+
+            cadSQL = "select RFCCliente from t4cliente where nombrecliente='" + nombre + "'";
+            GestorBD.consBD(cadSQL, dsRFC, "rfc");
+            RFC = dsRFC.Tables["rfc"].Rows[0]["RFCCliente"].ToString();
 
             //2.2- Obtiene y muestra Folios de las facturas del cliente.
 
-            cadSQL = "select f.folio from t4factura f, t4cliente c where c.nombrecliente='" + nombre + "' and f.fecha between '" + fecha + "' and sysdate";
-           
+            cadSQL = "select f.folio from t4factura f, t4cliente cli where cli.rfccliente=f.rfccliente and cli.RFCCliente='" + RFC + "' and f.fecha between '" + fecha + "' and sysdate";
+
             GestorBD.consBD(cadSQL, dsFactura, "TablaFactura");
             comunes.cargaCombo(cboNoFactura, dsFactura, "TablaFactura", "Folio");
 
-            }
+        }
 
         private void cboNoFactura_SelectedIndexChanged(object sender, EventArgs e)
         {
