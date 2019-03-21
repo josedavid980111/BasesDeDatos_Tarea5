@@ -328,7 +328,7 @@ namespace Tarea5
         {
             //1- Hcer la conexión a la BD de Oracle
 
-            GestorBD = new GestorBD.GestorBD("MSDAORA", "System", "gonbar", "xe");
+            GestorBD = new GestorBD.GestorBD("MSDAORA", "BD03", "gonbar", "oracle");
 
             //2.1- Obtiene y muestra los datos de los Cliente.
             cadSQL = "Select * from T4Cliente";

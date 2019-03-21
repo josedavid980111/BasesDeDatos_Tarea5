@@ -30,8 +30,8 @@ namespace Tarea5
             try{
                 String NombreCadena, NombreSucursal;
                 //1- Hcer la conexión a la BD de Oracle
-                cnOracle = new OleDbConnection("Provider=MSDAORA; Data Source=xe;" +
-                  "User ID=system;Password=gonbar");
+                cnOracle = new OleDbConnection("Provider=MSDAORA; Data Source=oracle;" +
+                  "User ID=BD03;Password=gonbar");
                 cnOracle.Open();
 
                 OleDbCommand funcionAlmacenado;
@@ -39,8 +39,8 @@ namespace Tarea5
                 int cant;
 
                 //1- Abrir la conexión a la BD.
-                cnOracle = new OleDbConnection("Provider=MSDAORA; Data Source=xe;" +
-                  "User ID=System;Password=gonbar");
+                cnOracle = new OleDbConnection("Provider=MSDAORA; Data Source=oracle;" +
+                  "User ID=BD03;Password=gonbar");
                 cnOracle.Open();
                 funcionAlmacenado = new OleDbCommand();
                 funcionAlmacenado.Connection = cnOracle;
@@ -93,8 +93,8 @@ namespace Tarea5
                 OleDbParameter parametro1, parametro2, salida1, salida2;
 
                 //1- Abrir la conexión a la BD.
-                cnOracle = new OleDbConnection("Provider=MSDAORA; Data Source=xe;" +
-                  "User ID=System;Password=gonbar");
+                cnOracle = new OleDbConnection("Provider=MSDAORA; Data Source=oracle;" +
+                  "User ID=BD03;Password=gonbar");
                 cnOracle.Open();
                 procedimientoAlmacenado = new OleDbCommand();
                 procedimientoAlmacenado.Connection = cnOracle;
@@ -117,7 +117,7 @@ namespace Tarea5
                 salida1 = new OleDbParameter("cant", OleDbType.Integer,
                   4, ParameterDirection.Output, false, 4, 0, "nombreP", DataRowVersion.Current, 0);
                 salida2 = new OleDbParameter("sucursal", OleDbType.VarChar,
-                  4, ParameterDirection.Output, false, 4, 0, "monto", DataRowVersion.Current, 0);
+                  20, ParameterDirection.Output, false, 4, 0, "nombreP", DataRowVersion.Current, 0);
 
                 procedimientoAlmacenado.Parameters.Add(salida1);
                 procedimientoAlmacenado.Parameters.Add(salida2);
@@ -130,7 +130,7 @@ namespace Tarea5
                 //   parámetro(s) de salida.
                 cant = Convert.ToInt16(procedimientoAlmacenado.Parameters["cant"].Value);
                 sucursal = procedimientoAlmacenado.Parameters["sucursal"].Value.ToString();
-                MessageBox.Show("Nombre del Articulo: " + nombreP + " Precio: " + monto +
+                MessageBox.Show("Nombre del Articulo: " + nombreP + ", Precio: " + monto +
                     ", Cantidad de Sucursales: " + cant+ ", Sucursal: " + sucursal);
             }
             catch (Exception err)
@@ -185,7 +185,7 @@ namespace Tarea5
         {
             //1- Hcer la conexión a la BD de Oracle
 
-            GestorBD = new GestorBD.GestorBD("MSDAORA", "System", "gonbar", "xe");
+            GestorBD = new GestorBD.GestorBD("MSDAORA", "BD03", "gonbar", "oracle");
 
             //2.1- Obtiene y muestra los datos de los Cadena.
             cadSQL = "Select * from T4CADCOM";
