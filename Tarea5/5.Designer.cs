@@ -53,6 +53,7 @@
             this.cbCliente.Name = "cbCliente";
             this.cbCliente.Size = new System.Drawing.Size(121, 21);
             this.cbCliente.TabIndex = 0;
+            this.cbCliente.SelectedIndexChanged += new System.EventHandler(this.cbCliente_SelectedIndexChanged);
             // 
             // dtp5
             // 
@@ -104,7 +105,7 @@
             this.dtgFac.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgFac.Location = new System.Drawing.Point(56, 138);
             this.dtgFac.Name = "dtgFac";
-            this.dtgFac.Size = new System.Drawing.Size(354, 184);
+            this.dtgFac.Size = new System.Drawing.Size(406, 184);
             this.dtgFac.TabIndex = 6;
             // 
             // label4

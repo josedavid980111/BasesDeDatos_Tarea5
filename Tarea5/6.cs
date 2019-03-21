@@ -19,6 +19,7 @@ namespace Tarea5
         private Varios.Comunes comunes = new Varios.Comunes();
         private double TotalDelTotal = 0;
         private String IdS, RFCCli;
+        private Boolean punto = false;
 
         public _6()
         {
@@ -74,7 +75,7 @@ namespace Tarea5
             try
             {
                 Double PagoInicial = Convert.ToDouble(textBox1.Text);
-                int folio = 0, folioPago=0;
+                int folio = 0, folioPago = 0;
                 int Articulo; int CantArticulo; double Total;
                 Random random = new Random();
                 Boolean folioAprobado = false;
@@ -105,7 +106,7 @@ namespace Tarea5
 
                 }
 
-                cadSQL = "insert into T4Pagos values (" + folioPago + ","+PagoInicial+", date'" + DateTimePicker1.Value.Year + "-" + DateTimePicker1.Value.Month + "-" + DateTimePicker1.Value.Day + "'," +folio+ ")";
+                cadSQL = "insert into T4Pagos values (" + folioPago + "," + PagoInicial + ", date'" + DateTimePicker1.Value.Year + "-" + DateTimePicker1.Value.Month + "-" + DateTimePicker1.Value.Day + "'," + folio + ")";
                 GestorBD.altaBD(cadSQL);
 
 
@@ -119,7 +120,7 @@ namespace Tarea5
                     dataGridView1.Rows.RemoveAt(0);
                     GestorBD.altaBD(cadSQL);
                 }
-               
+
 
                 comboBox2.Visible = false;
                 label2.Visible = false;
@@ -159,6 +160,7 @@ namespace Tarea5
 
         private void button4_Click(object sender, EventArgs e)
         {
+
             try
             {
                 TotalDelTotal = TotalDelTotal - Convert.ToDouble(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells["PrecioTotalArticulo"].Value);
@@ -173,6 +175,47 @@ namespace Tarea5
             catch (Exception err)
             {
                 MessageBox.Show(err.Message);
+            }
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsNumber(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Convert.ToInt32(e.KeyChar) == 8)
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBox1_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsNumber(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Convert.ToInt32(e.KeyChar) == 8)
+            {
+                if(textBox1.Text.Length>0 && textBox1.Text.Substring(textBox1.Text.Length - 1)==".")
+                {
+                    punto = false;
+                }
+                e.Handled = false;
+            }
+            else if (Convert.ToInt32(e.KeyChar) == 46 && !punto)
+            {
+                e.Handled = false;
+                punto = true;
+            }
+            else
+            {
+                e.Handled = true;
             }
         }
 
@@ -230,7 +273,7 @@ namespace Tarea5
         private void button1_Click(object sender, EventArgs e)
         {
 
-            
+
             try
             {
                 String Cliente, Sucursal;
